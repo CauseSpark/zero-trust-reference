@@ -1,0 +1,26 @@
+capability_id,pillar,function,nist_800_53_rev5_controls,nist_800_207_tenets,mapping_rationale
+ID-01,Identity,Authentication,IA-2;IA-2(1);IA-2(2);IA-5;IA-8;IA-11,T6,MFA for privileged and non-privileged users plus authenticator management and risk-triggered re-authentication
+ID-02,Identity,Identity Stores,AC-2;IA-4;IA-5,T4;T6,Authoritative identifiers and account lifecycle feed every policy decision
+ID-03,Identity,Risk Assessments,AC-2(12);RA-3;SI-4,T4;T7,Flag atypical account use and feed identity risk into the access decision
+ID-04,Identity,Access Management,AC-2;AC-2(6);AC-3;AC-6;AC-6(5),T3;T4,Least privilege with dynamic privilege management instead of standing admin rights
+DV-01,Devices,Policy Enforcement & Compliance Monitoring,CM-2;CM-6;CA-7;SI-2,T5,Baselines and settings checked continuously so posture can gate access
+DV-02,Devices,Asset & Supply Chain Risk Management,CM-8;SR-3;SR-6,T1;T5,You cannot evaluate a device you have not inventoried; supplier risk covers what arrives pre-compromised
+DV-03,Devices,Resource Access,AC-19;AC-20;IA-3,T4;T5,Device identity and health become inputs to access for managed and unmanaged endpoints
+DV-04,Devices,Device Threat Protection,SI-3;SI-4;SI-7,T5,Endpoint detection and integrity checks supply real-time device risk
+NW-01,Networks,Network Segmentation,AC-4;SC-7;SC-7(5);SC-32,T2;T3,Deny-by-default boundaries and partitioning limit lateral movement
+NW-02,Networks,Network Traffic Management,AC-4;CA-9;SC-7,T4,Flows are permitted by application need and documented internal connections
+NW-03,Networks,Traffic Encryption,SC-8;SC-8(1);SC-13;SC-23,T2,Encrypt and authenticate all sessions including internal east-west traffic
+NW-04,Networks,Network Resilience,CP-2;CP-8;SC-5,T2,Protected paths and enforcement points must stay available under failure or DoS
+AW-01,Applications and Workloads,Application Access,AC-3;AC-12;AC-17;IA-2,T3;T6,Per-application authorization with session limits instead of network-level trust
+AW-02,Applications and Workloads,Application Threat Protections,SC-7;SI-4;SI-10,T5;T7,Inline protection and monitoring tuned to application-layer attacks
+AW-03,Applications and Workloads,Accessible Applications,AC-3;AC-17;SC-7,T2;T3,Apps are reachable through policy enforcement points without a full-tunnel VPN
+AW-04,Applications and Workloads,Secure Application Development & Deployment Workflow,CM-14;SA-8;SA-10;SA-15;SI-7,T5,Signed components and controlled pipelines keep workload integrity verifiable
+AW-05,Applications and Workloads,Application Security Testing,CA-8;RA-5;SA-11,T5,Continuous testing produces evidence of workload security posture
+DA-01,Data,Data Inventory Management,CM-12;PM-5,T1,Data stores are resources and must be located before they can be protected
+DA-02,Data,Data Categorization,AC-16;MP-3;RA-2,T4,Sensitivity labels become attributes the policy engine can evaluate
+DA-03,Data,Data Availability,CP-4;CP-9;CP-10,T1,Backup and tested recovery keep data resources usable after an incident
+DA-04,Data,Data Access,AC-3;AC-6;AC-16,T3;T4,Attribute-based least-privilege access to data rather than broad share permissions
+DA-05,Data,Data Encryption,SC-12;SC-13;SC-28;SC-28(1),T2,Encryption at rest with managed keys protects data wherever it lives
+CC-01,Cross-Cutting,Visibility & Analytics,AU-2;AU-6;AU-12;CA-7;SI-4,T7,Centralized logging and analysis supply the telemetry the trust algorithm relies on
+CC-02,Cross-Cutting,Automation & Orchestration,IR-4;IR-4(1);SI-4(2),T7,Automated handling closes the loop between detection and enforcement
+CC-03,Cross-Cutting,Governance,CA-6;PL-2;PM-6;PM-9;PM-31,T4;T7,Risk strategy and performance measures keep the program accountable and repeatable
