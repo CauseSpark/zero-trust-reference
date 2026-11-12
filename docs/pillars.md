@@ -8,12 +8,12 @@
 | Framework | Version in use | Structure | Official link |
 |---|---|---|---|
 | CISA Zero Trust Maturity Model (ZTMM) | **Version 2.0, April 2023** | 5 pillars, 3 cross-cutting capabilities, 4 maturity stages | <https://www.cisa.gov/zero-trust-maturity-model> |
-| DoD Zero Trust Strategy | **2022 strategy** (publicly released Nov 2022) | 7 pillars, 4 strategic goals, Target and Advanced levels | <https://dodcio.defense.gov/Library/> (search "Zero Trust Strategy") |
+| DoD Zero Trust Strategy | **2022 strategy** (publicly released Nov 2022; now listed as the "DoW Zero Trust Strategy") | 7 pillars, 4 strategic goals, Target and Advanced levels | <https://dodcio.defense.gov/Library/> (Architectures & Strategies section) |
 | NIST SP 800-207, Zero Trust Architecture | **Final, August 2020** | 7 tenets, logical components, deployment approaches | <https://csrc.nist.gov/pubs/sp/800/207/final> |
 
 **DoD note:** DoD has announced a *Zero Trust Strategy 2.0* that would extend coverage beyond IT
 (for example, to operational technology). As of this check I could not find that it has been
-published, so these notes follow the 2022 strategy. Re-check the DoD CIO library before relying on this.
+published (the DoD CIO library lists no 2.0), so these notes follow the 2022 strategy. Re-check the DoD CIO library before relying on this.
 
 ---
 
@@ -115,6 +115,6 @@ framing lives at the program level.
 
 ## Further reading
 
-- NIST SP 800-207A, a ZTA model for access control in cloud-native, multi-location applications: <https://csrc.nist.gov/pubs/sp/800/207/a/final>
+- NIST SP 800-207A (Sept 2023), a ZTA model for access control in cloud-native applications in multi-cloud environments: <https://csrc.nist.gov/pubs/sp/800/207/a/final>
 - NIST NCCoE, *Implementing a Zero Trust Architecture* (SP 1800-35): <https://www.nccoe.nist.gov/projects/implementing-zero-trust-architecture>
 - OMB M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*: <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf>
