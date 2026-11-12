@@ -1,0 +1,26 @@
+capability_id,pillar,function,current_stage,target_stage,weight,owner_role,evidence_notes
+ID-01,Identity,Authentication,Advanced,Optimal,3,IAM Lead,Phishing-resistant MFA for admins; remaining staff on push MFA
+ID-02,Identity,Identity Stores,Initial,Advanced,2,IAM Lead,Cloud IdP is primary; legacy on-prem directory still serves warehouse kiosks
+ID-03,Identity,Risk Assessments,Initial,Advanced,2,Security Operations,Sign-in risk scoring enabled but not used in access policy
+ID-04,Identity,Access Management,Initial,Advanced,3,IAM Lead,Quarterly access reviews; no just-in-time admin elevation yet
+DV-01,Devices,Policy Enforcement & Compliance Monitoring,Initial,Advanced,3,Endpoint Engineering,MDM compliance checked at enrollment only
+DV-02,Devices,Asset & Supply Chain Risk Management,Traditional,Initial,2,IT Asset Management,Asset list kept in spreadsheet; store POS devices tracked separately
+DV-03,Devices,Resource Access,Initial,Advanced,2,Endpoint Engineering,Device compliance gates email and file sharing only
+DV-04,Devices,Device Threat Protection,Advanced,Advanced,2,Security Operations,EDR on all corporate laptops and servers
+NW-01,Networks,Network Segmentation,Traditional,Initial,3,Network Engineering,Flat network inside each distribution center
+NW-02,Networks,Network Traffic Management,Traditional,Initial,1,Network Engineering,Static firewall rules reviewed annually
+NW-03,Networks,Traffic Encryption,Initial,Advanced,2,Network Engineering,TLS on external services; some internal apps still plaintext HTTP
+NW-04,Networks,Network Resilience,Initial,Initial,1,Network Engineering,Dual ISP links at HQ; single link at stores
+AW-01,Applications and Workloads,Application Access,Initial,Advanced,3,Application Security,SSO for SaaS; legacy order system uses shared local accounts
+AW-02,Applications and Workloads,Application Threat Protections,Initial,Advanced,2,Application Security,WAF in front of e-commerce site only
+AW-03,Applications and Workloads,Accessible Applications,Initial,Advanced,1,Application Security,Internal apps reachable only over full-tunnel VPN
+AW-04,Applications and Workloads,Secure Application Development & Deployment Workflow,Initial,Advanced,2,Platform Engineering,CI pipelines exist; no artifact signing
+AW-05,Applications and Workloads,Application Security Testing,Initial,Advanced,2,Application Security,SAST in CI for web team; annual third-party pen test
+DA-01,Data,Data Inventory Management,Traditional,Initial,2,Data Governance,No consolidated inventory of sensitive data stores
+DA-02,Data,Data Categorization,Traditional,Initial,2,Data Governance,Classification policy drafted; labels not applied
+DA-03,Data,Data Availability,Initial,Advanced,2,Infrastructure,Nightly backups; restore testing is ad hoc
+DA-04,Data,Data Access,Initial,Advanced,3,Data Governance,Role-based share permissions; customer data broadly readable by analysts
+DA-05,Data,Data Encryption,Advanced,Advanced,2,Infrastructure,Encryption at rest on cloud storage and databases; keys provider-managed
+CC-01,Cross-Cutting,Visibility & Analytics,Initial,Advanced,3,Security Operations,SIEM ingests IdP and EDR logs; network logs not centralized
+CC-02,Cross-Cutting,Automation & Orchestration,Traditional,Initial,2,Security Operations,Response playbooks are manual runbooks
+CC-03,Cross-Cutting,Governance,Initial,Advanced,3,GRC,Zero trust policy approved; no metrics reported to leadership yet
