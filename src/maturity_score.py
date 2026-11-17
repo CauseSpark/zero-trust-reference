@@ -29,31 +29,12 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Iterable
 
-STAGES: dict[str, int] = {
-    "Traditional": 1,
-    "Initial": 2,
-    "Advanced": 3,
-    "Optimal": 4,
-}
+STAGES: dict[str, int] = {"Traditional": 1, "Initial": 2, "Advanced": 3, "Optimal": 4}
 STAGE_NAMES: dict[int, str] = {v: k for k, v in STAGES.items()}
 
-PILLARS: tuple[str, ...] = (
-    "Identity",
-    "Devices",
-    "Networks",
-    "Applications and Workloads",
-    "Data",
-    "Cross-Cutting",
-)
+PILLARS: tuple[str, ...] = ("Identity", "Devices", "Networks", "Applications and Workloads", "Data", "Cross-Cutting")
 
-REQUIRED_COLUMNS: tuple[str, ...] = (
-    "capability_id",
-    "pillar",
-    "function",
-    "current_stage",
-    "target_stage",
-    "weight",
-)
+REQUIRED_COLUMNS: tuple[str, ...] = ("capability_id", "pillar", "function", "current_stage", "target_stage", "weight")
 
 
 class WorksheetError(ValueError):
@@ -146,16 +127,7 @@ def parse_rows(rows: Iterable[dict], fieldnames: Iterable[str] | None) -> list[C
         if weight <= 0:
             raise WorksheetError(f"row {i}: weight must be positive, got {weight}")
 
-        caps.append(
-            Capability(
-                capability_id=cid,
-                pillar=pillar,
-                function=(raw.get("function") or "").strip(),
-                current=current,
-                target=target,
-                weight=weight,
-            )
-        )
+        caps.append(Capability(cid, pillar, (raw.get("function") or "").strip(), current, target, weight))
 
     if not caps:
         raise WorksheetError("worksheet has no data rows")
@@ -187,39 +159,19 @@ def score(caps: list[Capability], top: int = 5) -> Report:
             continue
         mean = _weighted_mean((c.current, c.weight) for c in group)
         gap = _weighted_mean((c.gap, c.weight) for c in group)
-        pillar_scores.append(
-            PillarScore(
-                pillar=pillar,
-                capabilities=len(group),
-                mean_stage=round(mean, 2),
-                maturity_index=maturity_index(mean),
-                floor_stage=STAGE_NAMES[min(c.current for c in group)],
-                mean_gap=round(gap, 2),
-            )
-        )
+        pillar_scores.append(PillarScore(
+            pillar=pillar, capabilities=len(group), mean_stage=round(mean, 2), maturity_index=maturity_index(mean),
+            floor_stage=STAGE_NAMES[min(c.current for c in group)], mean_gap=round(gap, 2),
+        ))
 
     overall = _weighted_mean((c.current, c.weight) for c in caps)
-    ranked = sorted(
-        (c for c in caps if c.gap > 0),
-        key=lambda c: (-c.weighted_gap, c.capability_id),
-    )[: max(top, 0)]
+    ranked = sorted((c for c in caps if c.gap > 0), key=lambda c: (-c.weighted_gap, c.capability_id))[: max(top, 0)]
     top_gaps = [
-        {
-            "capability_id": c.capability_id,
-            "pillar": c.pillar,
-            "function": c.function,
-            "current": STAGE_NAMES[c.current],
-            "target": STAGE_NAMES[c.target],
-            "weighted_gap": round(c.weighted_gap, 2),
-        }
+        {"capability_id": c.capability_id, "pillar": c.pillar, "function": c.function,
+         "current": STAGE_NAMES[c.current], "target": STAGE_NAMES[c.target], "weighted_gap": round(c.weighted_gap, 2)}
         for c in ranked
     ]
-    return Report(
-        overall_mean_stage=round(overall, 2),
-        overall_maturity_index=maturity_index(overall),
-        pillars=pillar_scores,
-        top_gaps=top_gaps,
-    )
+    return Report(round(overall, 2), maturity_index(overall), pillar_scores, top_gaps)
 
 
 def to_markdown(report: Report) -> str:
@@ -250,10 +202,6 @@ def to_markdown(report: Report) -> str:
     return "\n".join(lines) + "\n"
 
 
-def to_json(report: Report) -> str:
-    return json.dumps(asdict(report), indent=2) + "\n"
-
-
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("worksheet", help="path to maturity worksheet CSV")
@@ -267,7 +215,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
-    sys.stdout.write(to_json(report) if args.format == "json" else to_markdown(report))
+    sys.stdout.write(json.dumps(asdict(report), indent=2) + "\n" if args.format == "json" else to_markdown(report))
     return 0
 
 
